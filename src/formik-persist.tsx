@@ -2,6 +2,7 @@ import * as React from 'react';
 import { FormikProps, connect } from 'formik';
 import debounce from 'lodash.debounce';
 import isEqual from 'react-fast-compare';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export interface PersistProps {
   name: string;
@@ -17,12 +18,8 @@ class PersistImpl extends React.Component<
     debounce: 300,
   };
 
-  saveForm = debounce((data: FormikProps<{}>) => {
-    if (this.props.isSessionStorage) {
-      window.sessionStorage.setItem(this.props.name, JSON.stringify(data));
-    } else {
-      window.localStorage.setItem(this.props.name, JSON.stringify(data));
-    }
+  saveForm = async debounce((data: FormikProps<{}>) => {
+      await AsyncStorage.setItem(this.props.name, JSON.stringify(data));
   }, this.props.debounce);
 
   componentDidUpdate(prevProps: PersistProps & { formik: FormikProps<any> }) {
@@ -31,10 +28,8 @@ class PersistImpl extends React.Component<
     }
   }
 
-  componentDidMount() {
-    const maybeState = this.props.isSessionStorage
-      ? window.sessionStorage.getItem(this.props.name)
-      : window.localStorage.getItem(this.props.name);
+  async componentDidMount() {
+    const maybeState = await AsyncStorage.getItem(this.props.name)  
     if (maybeState && maybeState !== null) {
       this.props.formik.setFormikState(JSON.parse(maybeState));
     }
