@@ -1,10 +1,10 @@
 {
-  "name": "formik-persist",
-  "description": "Persist and rehydrate a Formik form",
-  "version": "1.1.0",
+  "name": "react-native-formik-persist",
+  "description": "Persist and rehydrate a Formik form in RN",
+  "version": "1.0.0",
   "license": "MIT",
-  "author": "Jared Palmer <jared@palmer.net>",
-  "repository": "jaredpalmer/formik-persist",
+  "author": "Matej Turay <matej.turay@gmail.com>",
+  "repository": "jaredpalmer/react-native-formik-persist",
   "keywords": [
     "formik",
     "react",
@@ -12,7 +12,7 @@
     "form",
     "validation",
     "forms",
-    "localstorage",
+    "asyncstorage",
     "hoc"
   ],
   "main": "dist/formik-persist.js",
@@ -34,11 +34,12 @@
     "gen-docs": "all-contributors generate && doctoc README.md"
   },
   "dependencies": {
+    "debounce-async": "^0.0.2",
     "lodash.debounce": "^4.0.8",
-    "react-fast-compare": "^2.0.1"
-  },
-  "peerDependencies": {
+    "react-fast-compare": "^2.0.1",
     "@react-native-async-storage/async-storage": "^1.14.1",
+  },
+  "peerDependencies": {    
     "formik": "*",
     "react": ">=15"
   },
