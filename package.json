@@ -37,7 +37,7 @@
     "debounce-async": "^0.0.2",
     "lodash.debounce": "^4.0.8",
     "react-fast-compare": "^2.0.1",
-    "@react-native-async-storage/async-storage": "^1.14.1",
+    "@react-native-async-storage/async-storage": "^1.14.1"
   },
   "peerDependencies": {    
     "formik": "*",
